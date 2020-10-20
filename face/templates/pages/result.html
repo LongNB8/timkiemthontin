@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>result</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+        }
+
+        .container .header {
+            font-size: 1rem;
+            padding: 1rem 2rem;
+            margin: 1rem 2rem;
+            width: 500px;
+
+        }
+
+        .container .header img {
+            width: auto;
+            height: auto;
+        }
+
+        .container .header a {
+            display: flex;
+            padding: 2rem 0;
+        }
+
+        .container .main {
+            padding: 1rem 0rem;
+            margin: 1rem 0rem;
+        }
+        .container .main ul {
+            padding: 0 0 0 20px;
+            margin: 0;
+        }
+
+
+        .container .main ul li {
+            list-style-type: none;
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .container .main img {
+            width: 150px;
+            height: 200px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>{{rs}}</h1>
+            <img src="{{img}}" alt="">
+            <a href="/face">Tìm kiếm ảnh khác</a>
+        </div>
+        {% if item%}
+        <div class="main">
+            <h2>Thông tin chi tiết</h2>
+            <ul>
+               
+                <li>Họ và tên : {{item.0.name}}</li>
+                <li>Tuổi : {{item.0.age}}</li>
+                <li>Địa chỉ : {{item.0.address}}</li>
+                <li>SĐT : {{item.0.phone}}</li>
+            </ul>
+            <h3>Ảnh giống</h3>
+            {% for i in item %}
+            <img src="{{i.image.url}}" alt="" >
+            {%endfor%}
+        </div>
+        {% endif %}
+    </div>
+
+
+
+
+
+</body>
+
+</html>

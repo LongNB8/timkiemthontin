@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm kiếm hình ảnh</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #ECE9E6;
+            background: -webkit-linear-gradient(to right, #FFFFFF, #ECE9E6);
+            background: linear-gradient(to right, #FFFFFF, #ECE9E6);
+            display: flex;
+            
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            
+            background-color: #fff;
+            box-shadow: 0 0  10px 2px #3333331a;
+            border-radius: 0.75rem;
+            width: 400px;
+        
+        }
+
+        .container h1 {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        .container form {
+           display: flex;
+           flex-direction: column;
+        }
+        .container form input {
+            cursor: pointer;
+            border: none;
+            background-color: burlywood;
+            color: #fff;
+        }
+        .container form img {
+            padding: 2rem 0.5rem ;
+        }
+
+        .container form button {
+            cursor: pointer;
+            padding: 0.5rem 0rem;
+            margin: 1rem 0rem;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            background-color: rgb(173, 173, 11);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Nhập ảnh để tìm kiếm</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="myfile" id="" onchange="loadFile(event)" />
+
+            <img id="output" style="display : none"/>
+
+            <button type="submit">Tìm kiếm</button>
+
+            {% if uploaded_file_url %}
+            <p style="color: red; text-align: center;">{{ uploaded_file_url }}</a></p>
+            {% endif %}
+
+        </form>
+    </div>
+
+
+   
+
+    <script>
+        var loadFile = function (event) {
+            var image = document.getElementById('output');
+            image.setAttribute("style","display : block")
+            image.src = URL.createObjectURL(event.target.files[0]);
+        };
+    </script>
+</body>
+
+</html>
