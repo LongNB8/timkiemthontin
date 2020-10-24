@@ -11,6 +11,7 @@
         }
 
         body {
+            background-image: url("https://id.misa.com.vn/img/bg.svg");
             min-height: 100vh;
             margin: 0;
         }
@@ -29,11 +30,17 @@
         .container .header img {
             width: auto;
             height: auto;
+            max-width: 450px;
+            max-height: 500px;
         }
 
-        .container .header a {
+        .container .header a.tkak {
             display: flex;
             padding: 2rem 0;
+        }
+
+        .container .header a.loaddb{
+            display: flex;   
         }
 
         .container .main {
@@ -63,9 +70,17 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>{{rs}}</h1>
+            {% if rs %}
+            <h1>Tìm thấy 1 kết quả : {{rs}}</h1>
+            {% endif %}
+            {% if rk %}
+            <h1>{{rk}}</h1>
+            {% endif %}
             <img src="{{img}}" alt="">
-            <a href="/face">Tìm kiếm ảnh khác</a>
+            <a  class="tkak" href="/face">Tìm kiếm ảnh khác</a>
+            {% if loaddb %}
+            <a class="loaddb" href="/face/loaddb">Click để load dữ liệu từ database</a>
+            {% endif %}
         </div>
         {% if item%}
         <div class="main">
@@ -75,7 +90,7 @@
                 <li>Họ và tên : {{item.0.name}}</li>
                 <li>Tuổi : {{item.0.age}}</li>
                 <li>Địa chỉ : {{item.0.address}}</li>
-                <li>SĐT : {{item.0.phone}}</li>
+                <li>SĐT : 0{{item.0.phone}}</li>
             </ul>
             <h3>Ảnh giống</h3>
             {% for i in item %}

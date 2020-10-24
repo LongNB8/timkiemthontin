@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>result</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+        }
+
+        .container .header {
+            font-size: 1rem;
+            padding: 1rem 2rem;
+            margin: 1rem 2rem;
+            width: 500px;
+
+        }
+
+        .container .header img {
+            width: auto;
+            height: auto;
+            max-width: 450px;
+            max-height: 500px;
+        }
+
+        .container .header a.tkak {
+            display: flex;
+            padding: 2rem 0;
+        }
+
+        .container .header a.loaddb{
+            display: flex;   
+        }
+
+        .container .main {
+            padding: 1rem 0rem;
+            margin: 1rem 0rem;
+        }
+        .container .main ul {
+            padding: 0 0 0 20px;
+            margin: 0;
+        }
+
+
+        .container .main ul li {
+            list-style-type: none;
+            margin: 0;
+            font-size: 20px;
+        }
+
+        .container .main img {
+            width: 150px;
+            height: 200px;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Tìm thấy : </h1>
+            {% for i in rs%}
+            <h1>{{i}}</h1>
+            {%endfor%}
+            <img src="{{img}}" alt="">
+            <a  class="tkak" href="/face">Tìm kiếm ảnh khác</a>
+            {% if loaddb %}
+            <a class="loaddb" href="/face/loaddb">Click để load dữ liệu từ database</a>
+            {% endif %}
+        </div>
+        {% if item%}
+        <div class="main">
+            <h2>Thông tin chi tiết</h2>
+            {%for j in item%}
+            {{j}}<br>
+            {%endfor%}
+            <h3>Ảnh giống</h3>
+            {% for i in image %}
+            <img src="{{i}}" alt="" >
+            {%endfor%}
+        </div>
+        {% endif %}
+    </div>
+
+
+
+
+
+</body>
+
+</html>
